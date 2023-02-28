@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import './index.css';
 import { Navbar, Products, Cart, Checkout } from './components';
 import { commerce } from './lib/commerce';
+import { useWeb3 } from "@3rdweb/hooks";
 
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -70,8 +71,10 @@ const App = () => {
   }, []);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
-
+  const { address, connectWallet } = useWeb3();
   return (
+    <>
+    {address ? (
     <Router>
       <div style={{ display: 'flex' }}>
         <CssBaseline />
@@ -89,7 +92,28 @@ const App = () => {
         </Switch>
       </div>
     </Router>
+    ) : (
+      <div className="body">
+      <div className='container'>
+
+        <div className='box'>
+          <div className='cover'></div>
+          <div className= "shadow"></div>
+          <div className= "content">
+          <div className='form'>
+            <img className='logo' src="https://cdn-icons-png.flaticon.com/128/3002/3002256.png"></img>
+            <h1>Welcome to shipCart</h1>
+            <p> 👋 We're thrilled to have you here and look forward to providing you with an unparalleled shopping experience.</p>
+            <span>Connect your wallet to get started</span>
+            <button className="button" onClick={() => connectWallet('injected')}>Connect Wallet</button>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>    )}
+    </>
   );
+
 };
 
 export default App;

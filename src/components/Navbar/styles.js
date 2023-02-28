@@ -29,6 +29,10 @@ export default makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  address: {
+    marginRight: '15px',
+    fontSize: '1.2rem',
+  },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
