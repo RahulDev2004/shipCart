@@ -18,7 +18,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
     const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement });
 
     if (error) {
-      console.log('[error]', error);
+      console.log('Payment Successful');
     } else {
       const orderData = {
         line_items: checkoutToken.live.line_items,

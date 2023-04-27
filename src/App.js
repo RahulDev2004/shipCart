@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
-import { Navbar, Products, Cart, Checkout } from './components';
+import { Navbar, Products, Cart, Checkout, ProductPage } from './components';
 import { commerce } from './lib/commerce';
 import { useWeb3 } from "@3rdweb/hooks";
 
@@ -88,6 +88,9 @@ const App = () => {
           </Route>
           <Route path="/checkout" exact>
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
+          </Route>
+          <Route path="/Product" exact>
+            <ProductPage products={products} />
           </Route>
         </Switch>
       </div>
